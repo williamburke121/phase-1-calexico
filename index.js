@@ -35,7 +35,20 @@ function loadMenuDetails(dish){
     dishDescrip.textContent = dish.description
     let dishDamage = document.querySelector("#dish-price")
     dishDamage.textContent = dish.price
+    let numberInCart = document.querySelector("#number-in-cart")
+    numberInCart.textContent = dish.number_in_bag
     currentDish.addEventListener("click", ()=>{
         loadMenuDetails(dish)
     })
+}
+
+function hookUpAddToCart(){
+    let form = document.querySelector("#cart-form")
+    form.addEventListener("submit", (event) =>{
+        event.preventDefault()
+        currentDish.number_in_bag += parseInt(event.target["cart-amount"].value),
+        loadMenuDetails(currentDish)
+    })
+    
+    
 }
